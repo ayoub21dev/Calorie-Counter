@@ -6,14 +6,14 @@ const clearButton = document.getElementById('clear');
 const output = document.getElementById('output');
 let isError = false;
 
-
+// this function checks if the input string is a valid number and replaces invalid characters
 function cleanInputString(str) {
   const regex = /[+-\s]/g;
   return str.replace(regex, '');
 }
-
+// this function checks if the input string is a valid number and returns null or array 
 function isInvalidInput(str) {
-  const regex = /\d+e\d+/i;
+  const regex = /\d+e\d+/i; 
   return str.match(regex);
 }
 
@@ -28,3 +28,18 @@ function addEntry() {
    targetInputContainer.insertAdjacentHTML('beforeend',HTMLString);
 }
 addEntryButton.addEventListener('click', addEntry);
+
+function getCaloriesFromInputs(list) {
+  let calories = 0;
+
+  for (const item of list) {
+    const currVal = cleanInputString(item.value);
+    const invalidInputMatch = isInvalidInput(currVal);
+
+    if (invalidInputMatch) {
+      alert(`Invalid Input: ${invalidInputMatch[0]}`);
+       isError = true;
+       return null
+    }
+  }
+}
