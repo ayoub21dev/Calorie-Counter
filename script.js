@@ -8,9 +8,7 @@ let isError = false;
 
 // this function checks if the input string is a valid number and replaces invalid characters
 function cleanInputString(str) {
-   if (typeof str !== 'string') {
-    return ''; // Return an empty string or throw an error, depending on desired behavior
-  }
+
   const regex = /[+-\s]/g;
   return str.replace(regex , '');
 }
@@ -63,7 +61,7 @@ function calculateCalories(e) {
   const dinnerCalories = getCaloriesFromInputs(dinnerNumberInputs);
   const snacksCalories = getCaloriesFromInputs(snacksNumberInputs);
   const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
-  const exerciseCalories = getCaloriesFromInputs([exerciseNumberInputs]);
+  const exerciseCalories = getCaloriesFromInputs(exerciseNumberInputs);
   if (isError) {
     return
 } 
