@@ -8,8 +8,11 @@ let isError = false;
 
 // this function checks if the input string is a valid number and replaces invalid characters
 function cleanInputString(str) {
+   if (typeof str !== 'string') {
+    return ''; // Return an empty string or throw an error, depending on desired behavior
+  }
   const regex = /[+-\s]/g;
-  return str.replace(regex, '');
+  return str.replace(regex , '');
 }
 // this function checks if the input string is a valid number and returns null or array 
 function isInvalidInput(str) {
@@ -60,14 +63,15 @@ function calculateCalories(e) {
   const dinnerCalories = getCaloriesFromInputs(dinnerNumberInputs);
   const snacksCalories = getCaloriesFromInputs(snacksNumberInputs);
   const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
+  const exerciseCalories = getCaloriesFromInputs([exerciseNumberInputs]);
   if (isError) {
     return
 } 
 
   const consumedCalories = breakfastCalories + lunchCalories + dinnerCalories + snacksCalories;
-  const remainingCalories = budgetCalories -consumedCalories + exerciseCalories;
+  const remainingCalories = budgetCalories - consumedCalories + exerciseCalories;
   const surplusOrDeficit = remainingCalories <0 ? "Surplus" :"Deficit"
- output.innerHTML = `<span class ="${surplusOrDeficit.toLowerCase()}">${Math.abs(remainingCalories)} Calorie ${surplusOrDeficit}</span>
+  output.innerHTML = `<span class ="${surplusOrDeficit.toLowerCase()}">${Math.abs(remainingCalories)} Calorie ${surplusOrDeficit}</span>
   <hr>
  <p>${budgetCalories} Calories Budgeted</p>
   <p>${consumedCalories} Calories Consumed</p>
